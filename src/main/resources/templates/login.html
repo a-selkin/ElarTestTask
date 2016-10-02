@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница авторизации</title>
+    <style>
+        .error {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+        .login-box {
+            width: 300px;
+            padding: 20px;
+            margin: 100px auto;
+            background: #fff;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <span>Введите логин и пароль пользователя</span>
+    <br/><br/>
+    <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+        <div class="error" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"/>
+    </div>
+    <form th:action="@{/login}" method="post">
+        <table>
+            <tr>
+                <td>Логин:</td>
+                <td><input type='text' name='username'/></td>
+            </tr>
+            <tr>
+                <td>Пароль:</td>
+                <td><input type='password' name='password'/></td>
+            </tr>
+            <tr>
+                <td colspan='2'><input name="submit" type="submit" value="Войти"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
